@@ -16,7 +16,7 @@ export default {
         secondary: '#465055',
         complementary: '#CBD5E1',
         btnPrimary: '#0E1336',
-        btnSecondary: '#828282',
+        btnSecondary: '#3EA5F5',
         btnComplementary: '#CBD5E1',
         card: {
           DEFAULT: "hsl(var(--card))",
