@@ -4,14 +4,26 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {useForm} from "react-hook-form";
+import {createProduct} from '../products.api';
+import { useRouter } from 'next/navigation';
 
 const ProductForm = () => {
 
-    const { register } = useForm();
+    const { register, handleSubmit } = useForm();
+    const router = useRouter();
 
+    const onSubmit = handleSubmit(async data => {
+      console.log(data)
+      await createProduct({
+        ...data,
+        price: parseFloat(data.price),
+    });
+    router.push('/');
+    router.refresh();
+    })
   return (
     <>
-        <form className="p-3 md:p-5">
+        <form className="p-3 md:p-5" onSubmit={onSubmit}>
                   <Label className="text-secondary font-medium">Nombre</Label>
                   <Input
                     className="mt-2 md:mt-3 mb-3 md:mb-5 border border-gray-300 rounded-md px-3 md:px-4 py-2"
