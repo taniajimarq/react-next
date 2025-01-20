@@ -1,13 +1,14 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { getProducts } from "./products/products.api";
 import { Settings } from "lucide-react";
+import { getProducts } from "./products/products.api";
+import Perfil from "./perfil";
 
 async function Home() {
   const products = await getProducts();
@@ -15,8 +16,10 @@ async function Home() {
 
   return (
     <>
+      <Perfil />
+      <hr />
+
       <div className="p-10">
-        {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left text-cyan-950">
             Inventario de productos
@@ -29,7 +32,6 @@ async function Home() {
           </Link>
         </div>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
             <Card
