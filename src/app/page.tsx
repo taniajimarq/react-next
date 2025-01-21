@@ -8,7 +8,9 @@ import {
 } from "@/components/ui/card";
 import { Settings } from "lucide-react";
 import { getProducts } from "./products/products.api";
-import Perfil from "./perfil";
+//import Login from "./login";
+//import Perfil from "./perfil";
+import Apps from "./apps";
 
 async function Home() {
   const products = await getProducts();
@@ -16,8 +18,8 @@ async function Home() {
 
   return (
     <>
-      <Perfil />
-      <hr />
+     <Apps />
+      <hr /> 
 
       <div className="p-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">

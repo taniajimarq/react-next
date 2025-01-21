@@ -3,12 +3,13 @@ import { buttonVariants } from "@/components/ui/button";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
+import Image from "next/image";   
     
-    <div>
+    export const Login = () => {
+      return (
+        <div>
       {/* Contenido principal */}
       <div className="flex flex-col h-screen bg-white overflow-hidden">
         {/* Encabezado */}
@@ -92,3 +93,6 @@ import Image from "next/image";
         <footer className="flex h-16 md:h-20 justify-center bg-secondary py-3 md:py-4" />
       </div>
     </div>
+      )
+    }
+    export default Login;
