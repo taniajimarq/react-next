@@ -35,3 +35,7 @@ export async function deleteProduct(id:number) {
   });
   return await resp.json();
 }
+
+/* Editar productos */
+
+
