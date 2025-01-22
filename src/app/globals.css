@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+     --primary: '#1C256A';
+      --secondary: '#465055';
+      --complementary: '#CBD5E1';
+      --btnPrimary: '#0E1336';
+      --btnSecondary: '#828282';
+      --btnComplementary: '#CBD5E1';
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -63,5 +72,6 @@
   body {
     @apply bg-background text-foreground;
   }
+  
 }
 
