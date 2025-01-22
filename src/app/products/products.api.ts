@@ -1,6 +1,6 @@
 import { FieldValues } from "react-hook-form";
 
-interface Products {
+export interface Products {
   id: number;
   name: string;
   description: string;
@@ -25,4 +25,13 @@ export async function createProduct(productData: FieldValues) {
 export async function getProducts():Promise<Products[]> {
   const data = await fetch("http://localhost:4001/api/products");
   return await data.json();
+}
+
+/* Eliminar productos */
+
+export async function deleteProduct(id:number) {
+  const resp = await fetch(`http://localhost:4001/api/products/${id}`,{
+    method: "DELETE",
+  });
+  return await resp.json();
 }

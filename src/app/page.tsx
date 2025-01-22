@@ -1,26 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Settings } from "lucide-react";
 import { getProducts } from "./products/products.api";
+import { ProductsCard } from "./products/card.product";
 //import Login from "./login";
 //import Perfil from "./perfil";
-import Apps from "./apps";
+//import Apps from "./apps";
 
 async function Home() {
   const products = await getProducts();
-  console.log(products);
-
   return (
     <>
-     <Apps />
-      <hr /> 
-
       <div className="p-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left text-cyan-950">
@@ -36,36 +25,7 @@ async function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
-            <Card
-              key={product.id}
-              className="flex flex-col h-[600px] justify-between"
-            >
-              <CardHeader className="flex items-center justify-between gap-2">
-                <p className="text-xl font-semibold">
-                  {product.name.toUpperCase()}
-                </p>
-              </CardHeader>
-              <hr className="w-full" />
-              <CardContent className="flex flex-grow justify-center items-center ">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="max-w-full h-auto rounded p-5"
-                />
-              </CardContent>
-              <hr className="w-full" />
-              <CardFooter className="grid grid-rows grid-flow-col items-start mt-2 w-full ">
-                <div className="flex flex-col items-start">
-                  <p className="mt-2">{product.description}</p>
-                  <p className="text-lg font-semibold mt-2">${product.price}</p>
-                </div>
-                <div className="flex flex-col justify-center items-end h-full">
-                  <Link href="/products/new" className="flex items-end">
-                    <Settings className="h-6 w-6 text-gray-500" />
-                  </Link>
-                </div>
-              </CardFooter>
-            </Card>
+            <ProductsCard product={product} key={product.id}/>
           ))}
         </div>
       </div>
