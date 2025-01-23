@@ -9,9 +9,12 @@ export interface Products {
   createdAt: string;
   updatedAt: string;
 }
+// Variable que contiene la URL de la API
+const urlApi = "http://localhost:3002/api/products/";
+
 /* Crear productos */
 export async function createProduct(productData: FieldValues) {
-  const res = await fetch("http://localhost:4001/api/products", {
+  const res = await fetch(urlApi, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,32 +25,29 @@ export async function createProduct(productData: FieldValues) {
   console.log(data);
 }
 /*Consultar productos*/
-export async function getProducts():Promise<Products[]> {
-  const data = await fetch("http://localhost:4001/api/products");
+export async function getProducts(): Promise<Products[]> {
+  const data = await fetch(urlApi);
   return await data.json();
 }
 
 /* Eliminar productos */
-
-export async function deleteProduct(id:number) {
-  const resp = await fetch(`http://localhost:4001/api/products/${id}`,{
+export async function deleteProduct(id: number) {
+  const resp = await fetch(`${urlApi}${id}`, {
     method: "DELETE",
   });
   return await resp.json();
 }
 
 /* Editar productos */
-export async function updateProduct(id:number, newProduct:FieldValues) {
-  
-  const res = await fetch(`http://localhost:4001/api/products/${id}`,{
+export async function updateProduct(id: number, newProduct: FieldValues) {
+  const res = await fetch(`${urlApi}${id}`, {
     method: "PATCH",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(newProduct),
-    cache:'no-store'
+    cache: "no-store",
   });
-  
+
   return await res.json();
 }
-
