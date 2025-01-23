@@ -2,15 +2,14 @@ import React from "react";
 
 import {
   AlertDialog,
-  
   AlertDialogContent,
   AlertDialogDescription,
-  
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Products } from "./products.api";
 import ProductForm from "./new/product-form";
+import { CircleX } from "lucide-react";
 
 interface Props {
   isOpen: boolean;
@@ -26,11 +25,11 @@ function ProductDetailPage({ isOpen, onClose, product }: Props) {
           <AlertDialogTitle asChild>
             <div className="flex justify-between">
               <div>Edición de productos</div>
-              <button>PRUEBA</button>
+              <CircleX onClick={onClose} className="cursor-pointer" />
             </div>
           </AlertDialogTitle>
-          <AlertDialogDescription>
-            <ProductForm product={product} onClose={onClose}/>
+          <AlertDialogDescription asChild>
+            <ProductForm product={product} onClose={onClose} />
           </AlertDialogDescription>
         </AlertDialogHeader>
       </AlertDialogContent>
