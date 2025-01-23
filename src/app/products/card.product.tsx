@@ -49,8 +49,12 @@ export function ProductsCard({ product }: ProductProops) {
         <hr className="w-full" />
         <CardContent className="flex flex-grow justify-center items-center ">
           <img
-            src={product.image}
-            alt={product.name}
+            src={
+              product.image && product.image.trim() !== ""
+                ? product.image
+                : "/assets/sin_imagen.png"
+            }
+            alt={product.name || "Imagen no disponible"}
             className="max-w-full h-auto rounded p-5"
           />
         </CardContent>
@@ -73,7 +77,11 @@ export function ProductsCard({ product }: ProductProops) {
         </CardFooter>
       </Card>
 
-      <ProductDetailPage isOpen={isOpen} onClose={() => setIsOpen(false)} product={product}/>
+      <ProductDetailPage
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        product={product}
+      />
     </>
   );
 }

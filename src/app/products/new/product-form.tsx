@@ -31,6 +31,7 @@ const ProductForm = ({ product, onClose }: EditProductProps) => {
         ...data,
         price: data.price,
       });
+      
       router.push("/");
       router.refresh();
     }
