@@ -25,12 +25,12 @@ function ProductDetailPage({ isOpen, onClose, product }: Props) {
         <AlertDialogHeader>
           <AlertDialogTitle asChild>
             <div className="flex justify-between">
-              <p>Edición de productos</p>
+              <div>Edición de productos</div>
               <button>PRUEBA</button>
             </div>
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <ProductForm product={product} />
+            <ProductForm product={product} onClose={onClose}/>
           </AlertDialogDescription>
         </AlertDialogHeader>
       </AlertDialogContent>

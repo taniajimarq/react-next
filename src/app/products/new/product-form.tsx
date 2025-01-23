@@ -4,14 +4,15 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { createProduct, Products } from "../products.api";
+import { createProduct,  Products, updateProduct } from "../products.api";
 import { useRouter } from "next/navigation";
 
 interface EditProductProps {
+  onClose?: () => void;
   product?: Products;
 }
 
-const ProductForm = ({ product }: EditProductProps) => {
+const ProductForm = ({ product, onClose }: EditProductProps) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       ...product,
@@ -20,14 +21,21 @@ const ProductForm = ({ product }: EditProductProps) => {
   const router = useRouter();
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-    await createProduct({
-      ...data,
-      price: data.price,
-    });
-    router.push("/");
-    router.refresh();
+    if (product?.id) {
+      
+      await updateProduct(product.id, data);
+      router.push("/");
+      onClose!();
+    } else {
+      await createProduct({
+        ...data,
+        price: data.price,
+      });
+      router.push("/");
+      router.refresh();
+    }
   });
+
   return (
     <>
       <form className="p-3 md:p-5" onSubmit={onSubmit}>
@@ -47,7 +55,7 @@ const ProductForm = ({ product }: EditProductProps) => {
         <Input
           className="mt-2 md:mt-3 mb-3 md:mb-5 border border-gray-300 rounded-md px-3 md:px-4 py-2"
           placeholder="Ingresa el precio"
-          {...register("price",{valueAsNumber:true,required:true})}
+          {...register("price", { valueAsNumber: true, required: true })}
         />
         <Label className="text-secondary font-medium">Imagen</Label>
         <Input
@@ -57,7 +65,7 @@ const ProductForm = ({ product }: EditProductProps) => {
         />
         <div className="flex justify-center mt-5 md:mt-8">
           <Button className="text-white bg-btnSecondary hover:bg-gray-400 px-4 md:px-6 py-2 rounded-md w-[150px] md:w-[200px]">
-            Guardar
+            {product?.id ? "Editar producto" : "Guardar producto"}
           </Button>
         </div>
       </form>

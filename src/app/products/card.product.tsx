@@ -37,7 +37,8 @@ export function ProductsCard({ product }: ProductProops) {
             <Link className="flex items-end" href={""}>
               <Trash2
                 type="button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   handleRemoveProduct(product.id);
                 }}
                 className="h-6 w-6 text-gray-500"

@@ -37,5 +37,17 @@ export async function deleteProduct(id:number) {
 }
 
 /* Editar productos */
-
+export async function updateProduct(id:number, newProduct:FieldValues) {
+  
+  const res = await fetch(`http://localhost:4001/api/products/${id}`,{
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newProduct),
+    cache:'no-store'
+  });
+  
+  return await res.json();
+}
 
